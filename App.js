@@ -16,7 +16,7 @@ app.use(cors());
 
 // //juntar todo lo leido en el puerto serial y meterlo en un stream
 port.pipe(parser);
-let currentValue = 5;
+let currentValue = 0;
 
 // //leer lo que llega por puerto serial
 parser.on("data", (line) => {
