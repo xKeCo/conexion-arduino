@@ -58,14 +58,11 @@ parser.on("data", (line) => {
         .get()
         .then((res) => {
           const data = res.data();
-          db.collection("arduino")
-            .doc("data")
-            .set(
-              {
-                movimiento: data.movimiento + 1,
-              },
-              { merge: true }
-            );
+          const numPersonaje = res.data().personaje
+            ? { movimientoPersonaje1: data.movimiento + 1 }
+            : { movimientoPersonaje2: data.movimiento + 1 };
+
+          db.collection("arduino").doc("data").set(numPersonaje, { merge: true });
         });
     }
 
@@ -75,14 +72,10 @@ parser.on("data", (line) => {
         .get()
         .then((res) => {
           const data = res.data();
-          db.collection("arduino")
-            .doc("data")
-            .set(
-              {
-                movimiento: data.movimiento - 1,
-              },
-              { merge: true }
-            );
+          const numPersonaje = res.data().personaje
+            ? { movimientoPersonaje1: data.movimiento - 1 }
+            : { movimientoPersonaje2: data.movimiento - 1 };
+          db.collection("arduino").doc("data").set(numPersonaje, { merge: true });
         });
     }
     if (value === 4) {
