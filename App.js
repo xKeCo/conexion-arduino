@@ -85,6 +85,20 @@ parser.on("data", (line) => {
             );
         });
     }
+    if (value === 4) {
+      db.collection("arduino")
+        .doc("data")
+        .get()
+        .then((res) => {
+          const data = res.data();
+          db.collection("arduino").doc("data").set(
+            {
+              personaje: !data.personaje,
+            },
+            { merge: true }
+          );
+        });
+    }
   }
   console.log(line);
 });
