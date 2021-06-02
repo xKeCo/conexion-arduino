@@ -59,8 +59,8 @@ parser.on("data", (line) => {
         .then((res) => {
           const data = res.data();
           const numPersonaje = res.data().personaje
-            ? { movimientoPersonaje1: data.movimiento + 1 }
-            : { movimientoPersonaje2: data.movimiento + 1 };
+            ? { movimientoPersonaje1: data.movimientoPersonaje1 + 1 }
+            : { movimientoPersonaje2: data.movimientoPersonaje2 + 1 };
 
           db.collection("arduino").doc("data").set(numPersonaje, { merge: true });
         });
@@ -73,8 +73,8 @@ parser.on("data", (line) => {
         .then((res) => {
           const data = res.data();
           const numPersonaje = res.data().personaje
-            ? { movimientoPersonaje1: data.movimiento - 1 }
-            : { movimientoPersonaje2: data.movimiento - 1 };
+            ? { movimientoPersonaje1: data.movimientoPersonaje1 - 1 }
+            : { movimientoPersonaje2: data.movimientoPersonaje2 - 1 };
           db.collection("arduino").doc("data").set(numPersonaje, { merge: true });
         });
     }
